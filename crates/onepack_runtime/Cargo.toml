@@ -1,0 +1,16 @@
+[package]
+name = "onepack_runtime"
+version = "0.1.0"
+edition = "2021"
+
+[[bin]]
+name = "onepack_runtime"
+path = "src/bin/main.rs"
+
+[dependencies]
+dirs = "5.0.1"
+flate2 = "1.0.27"
+log = "0.4.20"
+memmem = "0.1.1"
+simple_logger = "4.2.0"
+tar = "0.4.40"
