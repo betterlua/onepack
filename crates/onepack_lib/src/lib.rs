@@ -1,6 +1,5 @@
 use std::collections::HashMap;
 use std::io::{Read, Write};
-use std::vec;
 use std::{fs::File, path::Path};
 extern crate alloc;
 use alloc::vec::Vec;
@@ -43,8 +42,8 @@ impl LuaLib {
             Err(e) => return Err(format!("Failed to create file becuase {e}")),
         };
 
-        let bin: vec::Vec<u8> = match postcard::to_vec::<LuaLib, 32>(self) {
-            Ok(bin) => bin.to_vec(),
+        let bin = match bincode::serialize(self) {
+            Ok(bin) => bin,
             Err(e) => return Err(format!("Failed to serialize lua lib becuase {e}")),
         };
 
