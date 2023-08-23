@@ -1,3 +1,4 @@
+use std::collections::HashMap;
 use std::io::{Read, Write};
 use std::vec;
 use std::{fs::File, path::Path};
@@ -85,8 +86,16 @@ pub struct LibraryOptions {
     pub output: String,
 }
 
-pub fn build(opts: LibraryOptions) -> Result<(), String> {
-    let lib = LuaLib::new(&opts.lua_version, &opts.target);
+pub fn build(opts: LibraryOptions, files: HashMap<String, Vec<u8>>) -> Result<(), String> {
+    let mut lib = LuaLib::new(&opts.lua_version, &opts.target);
+
+    for (key, value) in files {
+        let file = LuaLibFile {
+            file_name: key,
+            byte_code: value,
+        };
+        lib.data.push(file);
+    }
 
     match lib.write(&opts.output) {
         Ok(_) => Ok(()),
