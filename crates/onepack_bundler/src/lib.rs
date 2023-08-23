@@ -23,9 +23,9 @@ const APP_NAME: &str = env!("CARGO_PKG_NAME");
 pub const RUNNER_MAGIC: &[u8] = b"tVQhhsFFlGGD3oWV4lEPST8I8FEPP54IM0q7daes4E1y3p2U2wlJRYmWmjPYfkhZ0PlT14Ls0j8fdDkoj33f2BlRJavLj3mWGibJsGt5uLAtrCDtvxikZ8UX2mQDCrgE\0";
 
 const RUNNER_LINUX_X64: &[u8] =
-    include_bytes!("../../../target/x86_64-unknown-linux-gnu/release/onepack_runtime");
+    include_bytes!("runtimes/onepack_runtime_linux");
 const RUNNER_WINDOWS_X64: &[u8] =
-    include_bytes!("../../../target/x86_64-pc-windows-gnu/release/onepack_runtime.exe");
+    include_bytes!("runtimes/onepack_runtime_windows.exe");
 
 lazy_static! {
     pub static ref RUNNER_BY_ARCH: HashMap<&'static str, &'static [u8]> = {

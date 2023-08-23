@@ -1,1 +1,5 @@
-workspace.members = ["./crates/onepack_bundler", "./crates/onepack_runtime"]
+workspace.members = [
+    "./crates/onepack_bundler",
+    "./crates/onepack_runtime",
+    "./crates/onepack_lib",
+]

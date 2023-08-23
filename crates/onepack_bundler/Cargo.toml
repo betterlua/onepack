@@ -12,5 +12,6 @@ clap = "4.3.23"
 dirs = "5.0.1"
 flate2 = "1.0.27"
 lazy_static = "1.4.0"
+onepack_lib = { version = "0.1.0", path = "../onepack_lib" }
 tar = "0.4.40"
 tempdir = "0.3.7"
