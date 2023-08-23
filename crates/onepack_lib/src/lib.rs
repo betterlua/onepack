@@ -4,7 +4,7 @@ use std::{fs::File, path::Path};
 extern crate alloc;
 use alloc::vec::Vec;
 
-#[derive(Debug, serde::Serialize, serde::Deserialize)]
+#[derive(Debug, Clone, serde::Serialize, serde::Deserialize)]
 pub struct LuaLibHeader {
     pub magic: u32,
     pub lua_version: String,
@@ -12,13 +12,13 @@ pub struct LuaLibHeader {
     pub target: String,
 }
 
-#[derive(Debug, serde::Serialize, serde::Deserialize)]
+#[derive(Debug, Clone, serde::Serialize, serde::Deserialize)]
 pub struct LuaLibFile {
     pub file_name: String,
     pub byte_code: Vec<u8>,
 }
 
-#[derive(Debug, serde::Serialize, serde::Deserialize)]
+#[derive(Debug, Clone, serde::Serialize, serde::Deserialize)]
 pub struct LuaLib {
     pub header: LuaLibHeader,
     pub data: Vec<LuaLibFile>,
