@@ -66,7 +66,7 @@ impl LuaLib {
             Err(e) => return Err(format!("Failed to read lua lib because: {e}")),
         };
 
-        let output = match postcard::from_bytes::<LuaLib>(&bin) {
+        let output = match bincode::deserialize::<LuaLib>(&bin) {
             Ok(lib) => lib,
             Err(e) => return Err(format!("Failed to deserialize lua lib because: {e}")),
         };
