@@ -83,6 +83,7 @@ pub struct LibraryOptions {
     pub lua_version: String,
     pub target: String,
     pub output: String,
+    pub output_dir: String,
 }
 
 pub fn build(opts: LibraryOptions, files: HashMap<String, Vec<u8>>) -> Result<(), String> {
@@ -96,7 +97,11 @@ pub fn build(opts: LibraryOptions, files: HashMap<String, Vec<u8>>) -> Result<()
         lib.data.push(file);
     }
 
-    match lib.write(&opts.output) {
+    if !Path::new(&opts.output_dir).exists() {
+        std::fs::create_dir_all(&opts.output_dir).unwrap()
+    };
+
+    match lib.write(&format!("{}/{}", opts.output_dir, opts.output)) {
         Ok(_) => Ok(()),
         Err(e) => Err(e),
     }
