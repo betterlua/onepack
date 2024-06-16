@@ -23,7 +23,8 @@ fn main() {
     trace!("target_exec={:?}", target_file_name);
     trace!("target_path={:?}", target_path);
 
-    extract(&self_path, &cache_path);
+    extract(&self_path, &cache_path).unwrap();
+    std::env::set_var("OP_HOME", &cache_path);
     let exit_code = executor::execute(&target_path).unwrap();
     process::exit(exit_code);
 }
