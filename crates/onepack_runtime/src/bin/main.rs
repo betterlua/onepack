@@ -23,21 +23,7 @@ fn main() {
     trace!("target_exec={:?}", target_file_name);
     trace!("target_path={:?}", target_path);
 
-    match fs::metadata(&cache_path) {
-        Ok(cache) => {
-            if cache.modified().unwrap() >= fs::metadata(&self_path).unwrap().modified().unwrap() {
-                trace!("cache is up-to-date");
-            } else {
-                trace!("cache is outdated");
-                extract(&self_path, &cache_path).unwrap();
-            }
-        }
-        Err(_) => {
-            trace!("cache not found");
-            extract(&self_path, &cache_path).unwrap();
-        }
-    }
-
+    extract(&self_path, &cache_path);
     let exit_code = executor::execute(&target_path).unwrap();
     process::exit(exit_code);
 }
